@@ -1,5 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+    <script>
+    const AUTH_TOKEN_KEY = "authToken";
+
+    function saveTokenFromUrl() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+
+        if (token) {
+            localStorage.setItem(AUTH_TOKEN_KEY, token);
+            console.log("Token saved. User is signed in.");
+
+            window.history.replaceState(null, null, window.location.pathname);
+        } else {
+            window.location.replace("https://your-username.pythonanywhere.com/signin");
+        }
+    }
+    
+    saveTokenFromUrl();
+</script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
